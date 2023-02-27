@@ -10,67 +10,53 @@ import {
   Card,
   Button,
 } from "@chakra-ui/react";
-import React from "react";
-import tesImage from "../../../assets/TESARK_Logo_3x-removebg-preview.png";
-import {
-  BarChartExample,
-  barChartMultiple,
-} from "../../../components/AttendanceChart";
+import React, { useState } from "react";
+import { AgGridReact } from "ag-grid-react";
+
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-alpine.css";
 
 function Home() {
   const [formData, setFormData] = React.useState({});
-  console.log(formData);
+  const [rowData] = useState([
+    { make: "Toyota", model: "Celica", price: 35000 },
+    { make: "Ford", model: "Mondeo", price: 32000 },
+    { make: "Porsche", model: "Boxster", price: 72000 },
+  ]);
+
+  const [columnDefs] = useState([
+    { field: "make", checkboxSelection: true },
+    { field: "model" },
+    { field: "price" },
+    { field: "price" },
+    { field: "price" },
+  ]);
+  const defaultSetting = {
+    sortable: true,
+    editable: true,
+    filter: true,
+    floatingFilter: true,
+    flex: 1,
+  };
   return (
-    <Box style={{ display: "flex", justifyContent: "center" }} height={"full"}>
-      {/* <Center>
-        <Card px={3} py={10} bgColor={"gray.300"} height={"fit-content"}>
-          <VStack
-            justifyContent={"space-between"}
-            // alignItems={"center"}
-            // alignContent={"center"}
-            width={"2xl"}
-            alignItems="center"
-          >
-            <Heading color={"#3b0334"}>Attendance</Heading>
-            <label style={{ color: "#3b0334" }}>Status</label>
-            <Select
-              onChange={(e) =>
-                setFormData({ ...formData, status: e.target.value })
-              }
-              variant={"filled"}
-              width={"md"}
-              defaultValue={"present"}
-            >
-              <option value="absent">ABSENT</option>
-              <option value="present">PRESENT</option>
-              <option value="morninghalf">MORNING HALF</option>
-              <option value="eveninghalf">EVENING HALF</option>
-            </Select>
-            <label style={{ color: "#3b0334" }}>Working From</label>
-            <Select
-              variant={"filled"}
-              _selected={{ textColor: "#3b0334" }}
-              mb={"32"}
-              width={"md"}
-              defaultValue={"office"}
-            >
-              <option value="home">HOME</option>
-              <option value="office">OFFICE</option>
-              <option value="leave">LEAVE</option>
-            </Select>
-            <Box pt={10}>
-              <Button
-                _hover={{ bgColor: "white", color: "#3b0334" }}
-                bgColor={"#3b0334"}
-                color="white"
-              >
-                Submit
-              </Button>
-            </Box>
-          </VStack>
-        </Card>
-      </Center> */}
-      <BarChartExample data={barChartMultiple} />
+    <Box
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+      height={"full"}
+    >
+      <Card
+        className="ag-theme-alpine"
+        style={{ height: " 80%", width: "90%", overflowX: "hidden" }}
+      >
+        <AgGridReact
+          rowData={rowData}
+          columnDefs={columnDefs}
+          defaultColDef={defaultSetting}
+        ></AgGridReact>
+      </Card>{" "}
     </Box>
   );
 }

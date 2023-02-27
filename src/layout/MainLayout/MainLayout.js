@@ -34,20 +34,7 @@ function MainLayout(e) {
         <Header />{" "}
       </div>
       <div className="mainContent">
-        {" "}
-        {/* <AutoSizer>
-          {({ height, width }) => (
-            <List
-              className="List"
-              itemCount={3}
-              itemSize={35}
-              height={height}
-              width={width}
-            >
-              {datas}
-            </List>
-          )}
-        </AutoSizer> */}
+        <Home />
       </div>
 
       <div className="left_sidebar">
@@ -63,7 +50,7 @@ function MainLayout(e) {
         className="footer"
       >
         <VStack>
-          <div style={{ fontSize: "small-size" }}>Powered By</div>
+          <div style={{ fontSize: "10px" }}>Powered By</div>
           <div>
             <Image width={"14"} src={FooterLogo} alt="footer-logo" />
           </div>

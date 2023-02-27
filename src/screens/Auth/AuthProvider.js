@@ -24,7 +24,7 @@ export function AuthProvider(props) {
   const userLookUp = async () => {
     try {
       const response = await LookupUser();
-      setCurrentUser(response.email);
+      setCurrentUser(response.userData.email);
       console.log(response);
       localStorage.setItem(CURRENT_USER, JSON.stringify(response));
       navigation("/");

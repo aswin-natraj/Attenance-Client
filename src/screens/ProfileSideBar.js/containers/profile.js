@@ -11,7 +11,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-import React from "react";
+import React, { useContext } from "react";
 import { BsInstagram } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { AiFillHome, AiFillSetting } from "react-icons/ai";
@@ -19,6 +19,7 @@ import { MdTravelExplore, MdFavorite, MdLogout } from "react-icons/md";
 import { TbSend } from "react-icons/tb";
 import { ImProfile } from "react-icons/im";
 import { CURRENT_USER } from "../../../constants/preferenceKey";
+import { AuthContext } from "../../Auth/AuthProvider";
 
 function Profile() {
   const data = [
@@ -89,7 +90,7 @@ function Profile() {
                 {currentUser && currentUser.userData.name}
               </Text>
               <Text fontSize={"sm"} color={"gray.500"}>
-                Status: {currentUser.userData.status}
+                Status: {currentUser && currentUser.userData.status}
               </Text>
               <HStack pt={3}>
                 {ProfileData.map((item) => {
@@ -130,7 +131,7 @@ function Profile() {
                     </Tab>
                   );
                 })}
-                {currentUser.Roles.role == "CLIENT" ? null : (
+                {currentUser && currentUser.Roles.role == "CLIENT" ? null : (
                   <Tab
                     borderLeft={" 3px solid white"}
                     width={"40"}
